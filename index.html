@@ -45,7 +45,8 @@
                 <h2>3. Phong cách</h2><div class="ch" id="sty"></div>
                 <h2>4. Màu chủ đạo</h2><div class="ch sw" id="c1"></div>
                 <h2>5. Màu điểm nhấn</h2><div class="ch sw" id="c2"></div>
-                <h2>6. Phụ kiện</h2><div class="ch" id="acc"></div>
+                <h2>6. Giày & Dép</h2><div class="ch" id="sh"></div>
+                <h2>7. Phụ kiện</h2><div class="ch" id="acc"></div>
             </div>
         </div>
         <div>
@@ -75,8 +76,9 @@
     const EV=["Hội Lim & lễ hội làng","Tết","Khai giảng","Chụp kỷ yếu","Dạo phố cổ Hà Nội"];
     const ST=["Truyền thống","Thanh lịch","Gen Z năng động"];
     const COL=[["Đỏ son","#b3261e",5],["Vàng nghệ","#e0a100",45],["Xanh lam","#1f5fa8",215],["Xanh ngọc","#17877a",170],["Nâu đất","#7a4b2a",25],["Kem","#f1e4c8",40],["Hồng sen","#d4688a",340],["Đen","#2a2a2a",0]];
-    const ACC=["Nón quai thao","Khăn mỏ quạ","Khăn vấn","Thắt lưng","Hoa tai bạc","Quạt giấy","Túi cói","Sneaker trắng"];
-    const S={cos:"Áo tứ thân",evt:EV[0],sty:"Thanh lịch",c1:0,c2:1,acc:new Set(["Khăn mỏ quạ"])};
+    const SHOES=["Guốc gỗ mộc","Giày thêu cổ truyền","Giày búp bê","Sneaker trắng","Bốt da đen"];
+    const ACC=["Nón quai thao","Khăn mỏ quạ","Khăn vấn","Thắt lưng","Hoa tai bạc","Quạt giấy","Túi cói"];
+    const S={cos:"Áo tứ thân",evt:EV[0],sty:"Thanh lịch",c1:0,c2:1,sh:"Guốc gỗ mộc",acc:new Set(["Khăn mỏ quạ"])};
     const LB=[];
 
     function chips(id,list,get,set,multi){
@@ -110,14 +112,15 @@
                 w.push(`<b>${x}</b> thường không đi cùng <b>${S.cos}</b> trong cách mặc truyền thống. Bạn vẫn có thể thử như một điểm remix, nhưng nên ghi rõ đây là cách phối sáng tạo.`);
             }
         });
-        if(S.acc.has("Sneaker trắng")&&S.evt==EV[0])w.push("Hội Lim và lễ hội làng mang tính nghi lễ, giày sneaker dễ làm lệch không khí; hãy để dành cho dịp dạo phố hoặc chụp ảnh.");
+        if((S.sh=="Sneaker trắng"||S.sh=="Bốt da đen")&&S.evt==EV[0])w.push(`<b>${S.sh}</b> dễ làm lệch không khí nghi lễ trang trọng ở lễ hội làng/Hội Lim; nên dành cho dịp dạo phố hoặc chụp kỷ yếu.`);
+        if(S.sty=="Truyền thống"&&(S.sh=="Sneaker trắng"||S.sh=="Bốt da đen"))w.push(`Để đúng tinh thần phong cách <b>Truyền thống</b>, hãy ưu tiên <b>Guốc gỗ mộc</b> hoặc <b>Giày thêu cổ truyền</b>.`);
         if(S.sty=="Gen Z năng động"&&S.evt==EV[0])w.push("Lễ hội làng nên ưu tiên dáng kín đáo, trang trọng; giữ phần remix ở màu sắc hoặc phụ kiện nhỏ.");
         if(S.cos=="Yếm đào & váy"&&S.sty=="Gen Z năng động")w.push("Yếm vốn là áo mặc trong; hãy mặc kèm áo cánh bên ngoài để giữ sự kín đáo và đúng cách mặc truyền thống.");
         return w;
     }
 
     function suggestion(){
-        const t={"Hội Lim & lễ hội làng":"Giữ đúng các bộ phận truyền thống, hạn chế cách tân lớn.","Tết":"Ưu tiên đỏ/vàng, thêm phụ kiện nhỏ cho sắc xuân.","Khai giảng":"Chọn dáng gọn, màu sáng, dễ di chuyển.","Chụp kỷ yếu":"Chú ý màu nền ảnh; điểm nhấn tương phản sẽ lên hình đẹp.","Dạo phố cổ Hà Nội":"Có thể remix mạnh: sneaker, túi cói, màu pastel; hợp góc phố, mái ngói."}[S.evt];
+        const t={"Hội Lim & lễ hội làng":"Giữ đúng các bộ phận truyền thống, hạn chế cách tân lớn.","Tết":"Ưu tiên đỏ/vàng, thêm phụ kiện nhỏ cho sắc xuân.","Khai giảng":"Chọn dáng gọn, màu sáng, dễ di chuyển.","Chụp kỷ yếu":"Chú ý màu nền ảnh; điểm nhấn tương phản sẽ lên hình đẹp.","Dạo phố cổ Hà Nội":"Có thể remix mạnh: sneaker, bốt da, túi cói, màu pastel; hợp góc phố, mái ngói."}[S.evt];
         const s={"Truyền thống":"Giữ nguyên cấu trúc trang phục và phụ kiện cổ truyền.","Thanh lịch":"Tối giản, 1 màu chính + 1 điểm nhấn, ít phụ kiện.","Gen Z năng động":"Pha trộn phụ kiện hiện đại với trang phục truyền thống."}[S.sty];
         return t+" "+s;
     }
@@ -128,10 +131,11 @@
         chips("sty",ST,x=>x==S.sty,x=>S.sty=x);
         chips("c1",COL,(x,i)=>i==S.c1,(x,i)=>S.c1=i);
         chips("c2",COL,(x,i)=>i==S.c2,(x,i)=>S.c2=i);
+        chips("sh",SHOES,x=>x==S.sh,x=>S.sh=x);
         chips("acc",ACC,x=>S.acc.has(x),x=>S.acc.has(x)?S.acc.delete(x):S.acc.add(x));
         fig();
         const h=harmony(),w=warnings();
-        document.getElementById("card").innerHTML=`<h2>${S.cos} · ${S.evt}</h2><span class="tag">${S.sty}</span><span class="tag">${COL[S.c1][0]} + ${COL[S.c2][0]}</span>
+        document.getElementById("card").innerHTML=`<h2>${S.cos} · ${S.evt}</h2><span class="tag">${S.sty}</span><span class="tag">${COL[S.c1][0]} + ${COL[S.c2][0]}</span><span class="tag">${S.sh}</span>
 <p>${suggestion()}</p><div class="${h[0]}">🎨 ${h[1]}</div>${w.map(x=>`<div class="warn">⚠️ ${x}</div>`).join("")}
 <h2>Nguồn gốc & ý nghĩa</h2><p style="margin:0">${COS[S.cos].b}</p>`;
     }
@@ -139,7 +143,7 @@
     function fig(){document.getElementById("fig").innerHTML=figSVG(S)}
 
     function figSVG(T){
-        const a=COL[T.c1][1],b=COL[T.c2][1],A=T.acc,cos=T.cos;
+        const a=COL[T.c1][1],b=COL[T.c2][1],A=T.acc,cos=T.cos,sh=T.sh;
         const skinColor = "#f2cfae";
 
         // 1. VẼ CƠ THỂ MẪU (TAY & CHÂN)
@@ -150,15 +154,27 @@
             <!-- Cánh tay phải & Bàn tay -->
             <path d="M198 125 L212 215 L202 217 L190 130Z" fill="${skinColor}"/>
             <circle cx="208" cy="221" r="5" fill="${skinColor}"/>
-            <!-- Chân trái & Bàn chân -->
+            <!-- Chân trái -->
             <rect x="130" y="320" width="16" height="42" fill="${skinColor}"/>
-            <ellipse cx="136" cy="364" rx="10" ry="5" fill="${skinColor}"/>
-            <!-- Chân phải & Bàn chân -->
+            <!-- Chân phải -->
             <rect x="154" y="320" width="16" height="42" fill="${skinColor}"/>
-            <ellipse cx="164" cy="364" rx="10" ry="5" fill="${skinColor}"/>
         `;
 
-        // 2. VẼ TRANG PHỤC CỤ THỂ
+        // 2. VẼ GIÀY / DÉP
+        let shoesSVG="";
+        if(sh=="Sneaker trắng"){
+            shoesSVG=`<ellipse cx="136" cy="364" rx="13" ry="7" fill="#fff" stroke="#999"/><ellipse cx="164" cy="364" rx="13" ry="7" fill="#fff" stroke="#999"/><path d="M130 364 L142 364 M158 364 L170 364" stroke="#ccc" stroke-width="2"/>`;
+        }else if(sh=="Guốc gỗ mộc"){
+            shoesSVG=`<rect x="126" y="362" width="20" height="5" rx="1" fill="#8a5a36"/><rect x="154" y="362" width="20" height="5" rx="1" fill="#8a5a36"/><path d="M130 362 Q136 356 142 362 M158 362 Q164 356 170 362" stroke="#2a2a2a" stroke-width="3" fill="none"/>`;
+        }else if(sh=="Giày thêu cổ truyền"){
+            shoesSVG=`<ellipse cx="136" cy="364" rx="12" ry="6" fill="${a}"/><ellipse cx="164" cy="364" rx="12" ry="6" fill="${a}"/><circle cx="132" cy="364" r="2" fill="${b}"/><circle cx="160" cy="364" r="2" fill="${b}"/>`;
+        }else if(sh=="Giày búp bê"){
+            shoesSVG=`<ellipse cx="136" cy="364" rx="11" ry="5" fill="#2a2a2a"/><ellipse cx="164" cy="364" rx="11" ry="5" fill="#2a2a2a"/><path d="M130 362 Q136 365 142 362 M158 362 Q164 365 170 362" stroke="#fff" stroke-width="1" fill="none"/>`;
+        }else if(sh=="Bốt da đen"){
+            shoesSVG=`<rect x="128" y="340" width="18" height="26" fill="#1a1a1a" rx="3"/><rect x="152" y="340" width="18" height="26" fill="#1a1a1a" rx="3"/><ellipse cx="137" cy="365" rx="11" ry="5" fill="#1a1a1a"/><ellipse cx="163" cy="365" rx="11" ry="5" fill="#1a1a1a"/>`;
+        }
+
+        // 3. VẼ TRANG PHỤC CỤ THỂ
         let body="",pants="";
         if(cos=="Áo tứ thân"){
             body=`<path d="M105 130 L95 330 L150 330 L150 150Z M195 130 L205 330 L150 330 L150 150Z" fill="${a}"/><path d="M150 150 L125 230 L150 230Z M150 150 L175 230 L150 230Z" fill="${b}"/>`;
@@ -173,7 +189,7 @@
             pants=`<path d="M120 290 L112 340 L148 340 L150 290Z M180 290 L188 340 L152 340 L150 290Z" fill="${b}" opacity=".9"/>`;
         }
 
-        // 3. PHỤ KIỆN
+        // 4. PHỤ KIỆN
         let ex="";
         if(A.has("Nón quai thao"))ex+=`<ellipse cx="150" cy="40" rx="62" ry="14" fill="#2a2a2a"/><path d="M130 52 L125 85M170 52 L175 85" stroke="${b}" stroke-width="3"/>`;
         if(A.has("Khăn mỏ quạ"))ex+=`<path d="M112 48 Q150 15 188 48 L196 62 L150 44 L104 62Z" fill="#2a2a2a"/>`;
@@ -182,9 +198,8 @@
         if(A.has("Hoa tai bạc"))ex+=`<circle cx="118" cy="85" r="4" fill="#c0c0c0"/><circle cx="182" cy="85" r="4" fill="#c0c0c0"/>`;
         if(A.has("Quạt giấy"))ex+=`<path d="M210 200 L252 160 A60 60 0 0 1 232 230Z" fill="#f1e4c8" stroke="${a}"/>`;
         if(A.has("Túi cói"))ex+=`<rect x="70" y="200" width="36" height="30" rx="6" fill="#c9a96a"/><path d="M78 200 Q88 175 98 200" stroke="#8a6d34" fill="none" stroke-width="3"/>`;
-        if(A.has("Sneaker trắng"))ex+=`<ellipse cx="136" cy="364" rx="14" ry="7" fill="#fff" stroke="#999"/><ellipse cx="164" cy="364" rx="14" ry="7" fill="#fff" stroke="#999"/>`;
 
-        // 4. KHUÔN MẶT
+        // 5. KHUÔN MẶT
         const faceDetails = `
             <!-- Lông mày -->
             <path d="M136 73 Q142 70 146 73" stroke="#2a1c12" stroke-width="1.5" stroke-linecap="round" fill="none"/>
@@ -201,17 +216,17 @@
             <path d="M145 89 Q150 94 155 89" stroke="#b3261e" stroke-width="2" stroke-linecap="round" fill="none"/>
         `;
 
-        return `<rect width="300" height="380" rx="16" fill="#faf8f5"/>${limbs}${pants}${body}<circle cx="150" cy="82" r="30" fill="${skinColor}"/><path d="M118 80 Q150 30 182 80 Q170 60 150 58 Q130 60 118 80Z" fill="#2a1c12"/>${faceDetails}<rect x="138" y="108" width="24" height="25" fill="${skinColor}"/>${ex}`;
+        return `<rect width="300" height="380" rx="16" fill="#faf8f5"/>${limbs}${shoesSVG}${pants}${body}<circle cx="150" cy="82" r="30" fill="${skinColor}"/><path d="M118 80 Q150 30 182 80 Q170 60 150 58 Q130 60 118 80Z" fill="#2a1c12"/>${faceDetails}<rect x="138" y="108" width="24" height="25" fill="${skinColor}"/>${ex}`;
     }
 
     function renderLB(){
         const el=document.getElementById("lb");
         if(!LB.length){el.innerHTML='<span class="s">Chưa có look nào — hãy lưu một phương án.</span>';return}
-        el.innerHTML=LB.map(l=>`<div class="lk"><svg viewBox="0 0 300 380">${figSVG({cos:l.cos,c1:l.c1,c2:l.c2,acc:new Set(l.acc)})}</svg><b>${l.cos}</b><br><span class="s">${l.evt} · ${l.sty}</span><br><small>${COL[l.c1][0]} + ${COL[l.c2][0]}${l.acc.length?" · "+l.acc.join(", "):""}</small></div>`).join("");
+        el.innerHTML=LB.map(l=>`<div class="lk"><svg viewBox="0 0 300 380">${figSVG({cos:l.cos,c1:l.c1,c2:l.c2,sh:l.sh||"Guốc gỗ mộc",acc:new Set(l.acc)})}</svg><b>${l.cos}</b><br><span class="s">${l.evt} · ${l.sty}</span><br><small>${COL[l.c1][0]} + ${COL[l.c2][0]} · ${l.sh||"Guốc gỗ"}${l.acc.length?" · "+l.acc.join(", "):""}</small></div>`).join("");
     }
 
     function okL(l){return l&&COS[l.cos]&&Number.isInteger(l.c1)&&COL[l.c1]&&Number.isInteger(l.c2)&&COL[l.c2]&&EV.includes(l.evt)&&ST.includes(l.sty)}
-    function cl(l){return{cos:l.cos,evt:l.evt,sty:l.sty,c1:l.c1,c2:l.c2,acc:(Array.isArray(l.acc)?l.acc:[]).filter(x=>ACC.includes(x))}}
+    function cl(l){return{cos:l.cos,evt:l.evt,sty:l.sty,c1:l.c1,c2:l.c2,sh:SHOES.includes(l.sh)?l.sh:"Guốc gỗ mộc",acc:(Array.isArray(l.acc)?l.acc:[]).filter(x=>ACC.includes(x))}}
 
     function load(){
         try{
@@ -224,7 +239,7 @@
 
     document.getElementById("save").onclick=()=>{
         if(LB.length>=12)LB.shift();
-        LB.push({cos:S.cos,evt:S.evt,sty:S.sty,c1:S.c1,c2:S.c2,acc:[...S.acc]});
+        LB.push({cos:S.cos,evt:S.evt,sty:S.sty,c1:S.c1,c2:S.c2,sh:S.sh,acc:[...S.acc]});
         renderLB();
         try{localStorage.setItem("vp-lb",JSON.stringify(LB))}catch(e){}
     };

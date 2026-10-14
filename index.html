@@ -47,6 +47,7 @@
                 <h2>5. Màu điểm nhấn</h2><div class="ch sw" id="c2"></div>
                 <h2>6. Giày & Dép</h2><div class="ch" id="sh"></div>
                 <h2>7. Phụ kiện</h2><div class="ch" id="acc"></div>
+                <h2>8. Kiểu tóc</h2><div class="ch" id="hr"></div>
             </div>
         </div>
         <div>
@@ -68,17 +69,20 @@
 
 <script>
     const COS={
-        "Áo tứ thân":{b:"Trang phục của phụ nữ đồng bằng Bắc Bộ: hai tà trước buộc lại, mặc cùng yếm và váy, thường đội khăn mỏ quạ hoặc nón quai thao ở hội làng.",ok:["Nón quai thao","Khăn mỏ quạ","Thắt lưng","Hoa tai bạc","Quạt giấy","Túi cói"]},
+        "Áo tứ thân":{b:"Trang phục của phụ nữ đồng bằng Bắc Bộ: hai tà trước buộc lại, mặc cùng yếm và váy, thường đội khăn mỏ quạ hoặc nón quai thao ở hội làng.",ok:["Nón quai thao","Nón lá","Khăn mỏ quạ","Thắt lưng","Hoa tai bạc","Quạt giấy","Túi cói"]},
         "Áo mớ ba mớ bảy":{b:"Cách mặc nhiều lớp áo dài mỏng chồng lên nhau (ba hoặc bảy lớp), để lộ các màu ở cổ và vạt; thường được nhắc tới trong không gian quan họ và hội làng vùng Bắc Bộ.",ok:["Nón quai thao","Khăn mỏ quạ","Thắt lưng","Hoa tai bạc","Quạt giấy"]},
-        "Yếm đào & váy":{b:"Yếm là chiếc áo hình thoi buộc dây ở cổ và lưng, thường mặc cùng váy và áo cánh bên ngoài; gắn với hình ảnh phụ nữ nông thôn Bắc Bộ, hay xuất hiện trong lễ hội làng.",ok:["Khăn mỏ quạ","Khăn vấn","Thắt lưng","Hoa tai bạc","Nón quai thao","Túi cói"]},
-        "Áo giao lĩnh":{b:"Áo cổ vắt chéo (cổ giao nhau kiểu chữ y), dáng rộng thanh nhã, gắn với trang phục cổ truyền của người Việt qua nhiều thời kỳ; hợp ảnh nghệ thuật và lễ hội văn hóa. Nên đối chiếu thêm nguồn khi trích dẫn.",ok:["Khăn vấn","Thắt lưng","Quạt giấy","Hoa tai bạc"]}
+        "Yếm đào & váy":{b:"Yếm là chiếc áo hình thoi buộc dây ở cổ và lưng, thường mặc cùng váy và áo cánh bên ngoài; gắn với hình ảnh phụ nữ nông thôn Bắc Bộ, hay xuất hiện trong lễ hội làng.",ok:["Khăn mỏ quạ","Khăn vấn","Thắt lưng","Hoa tai bạc","Nón quai thao","Nón lá","Túi cói"]},
+        "Áo giao lĩnh":{b:"Áo cổ vắt chéo (cổ giao nhau kiểu chữ y), dáng rộng thanh nhã, gắn với trang phục cổ truyền của người Việt qua nhiều thời kỳ; hợp ảnh nghệ thuật và lễ hội văn hóa. Nên đối chiếu thêm nguồn khi trích dẫn.",ok:["Khăn vấn","Thắt lưng","Quạt giấy","Hoa tai bạc"]},
+        "Áo dài":{b:"Áo dài là trang phục biểu tượng của người Việt: thân áo ôm, cổ cao, xẻ hai bên và mặc cùng quần ống rộng. Áo dài ngũ thân là dạng truyền thống; áo dài hiện đại phổ biến rộng rãi hơn từ thế kỷ 20. Thường kết hợp với nón lá, khăn vấn hoặc khăn đóng.",ok:["Nón lá","Khăn vấn","Hoa tai bạc","Quạt giấy","Túi cói"]}
     };
     const EV=["Hội Lim & lễ hội làng","Tết","Khai giảng","Chụp kỷ yếu","Dạo phố cổ Hà Nội"];
     const ST=["Truyền thống","Thanh lịch","Gen Z năng động"];
     const COL=[["Đỏ son","#b3261e",5],["Vàng nghệ","#e0a100",45],["Xanh lam","#1f5fa8",215],["Xanh ngọc","#17877a",170],["Nâu đất","#7a4b2a",25],["Kem","#f1e4c8",40],["Hồng sen","#d4688a",340],["Đen","#2a2a2a",0]];
     const SHOES=["Guốc gỗ mộc","Giày thêu cổ truyền","Giày búp bê","Sneaker trắng","Bốt da đen"];
-    const ACC=["Nón quai thao","Khăn mỏ quạ","Khăn vấn","Thắt lưng","Hoa tai bạc","Quạt giấy","Túi cói"];
-    const S={cos:"Áo tứ thân",evt:EV[0],sty:"Thanh lịch",c1:0,c2:1,sh:"Guốc gỗ mộc",acc:new Set(["Khăn mỏ quạ"])};
+    const ACC=["Nón lá","Nón quai thao","Khăn mỏ quạ","Khăn vấn","Thắt lưng","Hoa tai bạc","Quạt giấy","Túi cói"];
+    const HAIR=["Xõa dài","Búi cao","Đuôi ngựa","Tóc tết hai bên","Tóc ngắn","Búi hai bên"];
+    const HATS=["Nón lá","Nón quai thao","Khăn mỏ quạ","Khăn vấn"];
+    const S={cos:"Áo tứ thân",evt:EV[0],sty:"Thanh lịch",c1:0,c2:1,sh:"Guốc gỗ mộc",hair:"Xõa dài",acc:new Set(["Khăn mỏ quạ"])};
     const LB=[];
 
     function chips(id,list,get,set,multi){
@@ -112,6 +116,8 @@
                 w.push(`<b>${x}</b> thường không đi cùng <b>${S.cos}</b> trong cách mặc truyền thống. Bạn vẫn có thể thử như một điểm remix, nhưng nên ghi rõ đây là cách phối sáng tạo.`);
             }
         });
+        const hats=[...S.acc].filter(x=>HATS.includes(x));
+        if(hats.length>1)w.push(`Bạn đang chọn nhiều đồ đội đầu cùng lúc (<b>${hats.join(", ")}</b>); thường chỉ chọn một loại để tạo hình gọn và đúng cách mặc.`);
         if((S.sh=="Sneaker trắng"||S.sh=="Bốt da đen")&&S.evt==EV[0])w.push(`<b>${S.sh}</b> dễ làm lệch không khí nghi lễ trang trọng ở lễ hội làng/Hội Lim; nên dành cho dịp dạo phố hoặc chụp kỷ yếu.`);
         if(S.sty=="Truyền thống"&&(S.sh=="Sneaker trắng"||S.sh=="Bốt da đen"))w.push(`Để đúng tinh thần phong cách <b>Truyền thống</b>, hãy ưu tiên <b>Guốc gỗ mộc</b> hoặc <b>Giày thêu cổ truyền</b>.`);
         if(S.sty=="Gen Z năng động"&&S.evt==EV[0])w.push("Lễ hội làng nên ưu tiên dáng kín đáo, trang trọng; giữ phần remix ở màu sắc hoặc phụ kiện nhỏ.");
@@ -133,14 +139,44 @@
         chips("c2",COL,(x,i)=>i==S.c2,(x,i)=>S.c2=i);
         chips("sh",SHOES,x=>x==S.sh,x=>S.sh=x);
         chips("acc",ACC,x=>S.acc.has(x),x=>S.acc.has(x)?S.acc.delete(x):S.acc.add(x));
+        chips("hr",HAIR,x=>x==S.hair,x=>S.hair=x);
         fig();
         const h=harmony(),w=warnings();
-        document.getElementById("card").innerHTML=`<h2>${S.cos} · ${S.evt}</h2><span class="tag">${S.sty}</span><span class="tag">${COL[S.c1][0]} + ${COL[S.c2][0]}</span><span class="tag">${S.sh}</span>
+        document.getElementById("card").innerHTML=`<h2>${S.cos} · ${S.evt}</h2><span class="tag">${S.sty}</span><span class="tag">${COL[S.c1][0]} + ${COL[S.c2][0]}</span><span class="tag">${S.sh}</span><span class="tag">${S.hair}</span>
 <p>${suggestion()}</p><div class="${h[0]}">🎨 ${h[1]}</div>${w.map(x=>`<div class="warn">⚠️ ${x}</div>`).join("")}
 <h2>Nguồn gốc & ý nghĩa</h2><p style="margin:0">${COS[S.cos].b}</p>`;
     }
 
     function fig(){document.getElementById("fig").innerHTML=figSVG(S)}
+
+    function hairSVG(h,a,b){
+        const c="#2a1c12";
+        let cap=`<path d="M119 78 Q114 34 150 32 Q186 34 181 78 Q176 60 164 55 Q150 64 136 55 Q124 60 119 78Z" fill="${c}"/>`;
+        const head=`<path d="M116 84 Q112 30 150 28 Q188 30 184 84Z" fill="${c}"/>`;
+        let back=head,mid="";
+        if(h=="Búi cao"){
+            back=head+`<circle cx="150" cy="22" r="15" fill="${c}"/>`;
+            cap+=`<path d="M138 34 Q150 40 162 34" stroke="${b}" stroke-width="3" fill="none"/>`;
+        }else if(h=="Đuôi ngựa"){
+            back=head+`<path d="M174 40 Q216 46 208 112 Q204 152 194 176 Q192 124 184 84Z" fill="${c}"/>`;
+            cap+=`<circle cx="180" cy="46" r="4" fill="${b}"/>`;
+        }else if(h=="Tóc tết hai bên"){
+            for(let i=0;i<6;i++){
+                const y=102+i*14;
+                mid+=`<ellipse cx="116" cy="${y}" rx="7.5" ry="9" fill="${c}" stroke="#000" stroke-opacity=".3"/><ellipse cx="184" cy="${y}" rx="7.5" ry="9" fill="${c}" stroke="#000" stroke-opacity=".3"/>`;
+            }
+            mid+=`<ellipse cx="116" cy="184" rx="6" ry="4" fill="${b}"/><ellipse cx="184" cy="184" rx="6" ry="4" fill="${b}"/>`;
+        }else if(h=="Tóc ngắn"){
+            back=`<path d="M113 86 Q108 28 150 24 Q192 28 187 86 L185 114 Q150 122 115 114Z" fill="${c}"/>`;
+        }else if(h=="Búi hai bên"){
+            back=head+`<circle cx="118" cy="40" r="13" fill="${c}"/><circle cx="182" cy="40" r="13" fill="${c}"/>`;
+            cap+=`<path d="M109 48 Q118 53 127 48 M173 48 Q182 53 191 48" stroke="${b}" stroke-width="3" fill="none"/>`;
+        }else{ // Xõa dài
+            back=`<path d="M114 84 Q110 28 150 25 Q190 28 186 84 L194 160 L106 160Z" fill="${c}"/>`;
+            mid=`<path d="M119 82 Q106 118 109 158 Q119 163 125 156 Q120 122 122 96Z M181 82 Q194 118 191 158 Q181 163 175 156 Q180 122 178 96Z" fill="${c}"/>`;
+        }
+        return {back,mid,cap};
+    }
 
     function figSVG(T){
         const a=COL[T.c1][1],b=COL[T.c2][1],A=T.acc,cos=T.cos,sh=T.sh;
@@ -148,15 +184,11 @@
 
         // 1. VẼ CƠ THỂ MẪU (TAY & CHÂN)
         const limbs = `
-            <!-- Cánh tay trái & Bàn tay -->
-            <path d="M102 125 L88 215 L98 217 L110 130Z" fill="${skinColor}"/>
+            ${cos=="Áo dài"?"":`<path d="M102 125 L88 215 L98 217 L110 130Z" fill="${skinColor}"/>`}
             <circle cx="92" cy="221" r="5" fill="${skinColor}"/>
-            <!-- Cánh tay phải & Bàn tay -->
-            <path d="M198 125 L212 215 L202 217 L190 130Z" fill="${skinColor}"/>
+            ${cos=="Áo dài"?"":`<path d="M198 125 L212 215 L202 217 L190 130Z" fill="${skinColor}"/>`}
             <circle cx="208" cy="221" r="5" fill="${skinColor}"/>
-            <!-- Chân trái -->
             <rect x="130" y="320" width="16" height="42" fill="${skinColor}"/>
-            <!-- Chân phải -->
             <rect x="154" y="320" width="16" height="42" fill="${skinColor}"/>
         `;
 
@@ -175,7 +207,7 @@
         }
 
         // 3. VẼ TRANG PHỤC CỤ THỂ
-        let body="",pants="";
+        let body="",pants="",collar="";
         if(cos=="Áo tứ thân"){
             body=`<path d="M105 130 L95 330 L150 330 L150 150Z M195 130 L205 330 L150 330 L150 150Z" fill="${a}"/><path d="M150 150 L125 230 L150 230Z M150 150 L175 230 L150 230Z" fill="${b}"/>`;
             pants=`<path d="M110 230 L100 335 L200 335 L190 230Z" fill="${b}" opacity=".85"/>`;
@@ -184,6 +216,17 @@
             pants=`<path d="M120 310 L112 340 L148 340 L150 310Z M180 310 L188 340 L152 340 L150 310Z" fill="${b}"/>`;
         }else if(cos=="Yếm đào & váy"){
             body=`<path d="M100 135 L85 220 L110 220 L118 145Z M200 135 L215 220 L190 220 L182 145Z" fill="#f1e4c8"/><path d="M122 200 L92 340 L208 340 L178 200Z" fill="${b}"/><path d="M150 115 L118 135 L128 200 L172 200 L182 135Z" fill="${a}"/><path d="M135 117 Q150 128 165 117" stroke="${b}" stroke-width="3" fill="none"/>`;
+        }else if(cos=="Áo dài"){
+            // quần ống rộng trắng + hai tà sau tung nhẹ + thân trước ôm eo + tay dài + cổ đứng
+            pants=`<path d="M126 240 L116 356 L148 356 L150 240Z M174 240 L184 356 L152 356 L150 240Z" fill="#f7f1e3" stroke="#d9ccb0"/>`;
+            const back=`M126 212 Q110 280 100 342 L146 342Z M174 212 Q190 280 200 342 L154 342Z`;
+            body=`<path d="${back}" fill="${a}"/><path d="${back}" fill="#000" opacity=".18"/>`+
+                `<path d="M113 133 Q100 136 97 148 L86 214 L99 219 L117 156Z M187 133 Q200 136 203 148 L214 214 L201 219 L183 156Z" fill="${a}"/>`+
+                `<path d="M86 214 L99 219 M214 214 L201 219" stroke="${b}" stroke-width="3"/>`+
+                `<path d="M139 127 L110 134 L116 168 Q128 188 127 207 Q121 235 119 264 L126 340 L150 346 L174 340 L181 264 Q179 235 173 207 Q172 188 184 168 L190 134 L161 127 Q150 140 139 127Z" fill="${a}"/>`+
+                `<path d="M158 138 Q172 150 177 180" stroke="#000" stroke-opacity=".3" stroke-width="1.5" fill="none"/>`+
+                `<circle cx="163" cy="144" r="1.8" fill="${b}"/><circle cx="170" cy="156" r="1.8" fill="${b}"/><circle cx="175" cy="169" r="1.8" fill="${b}"/>`+
+                `<path d="M126 340 L150 346 L174 340" stroke="${b}" stroke-width="3" fill="none"/>`;
         }else{
             body=`<path d="M100 125 L90 330 L210 330 L200 125 L150 170Z" fill="${a}"/><path d="M110 125 L150 185 L190 125" stroke="${b}" stroke-width="10" fill="none"/>`;
             pants=`<path d="M120 290 L112 340 L148 340 L150 290Z M180 290 L188 340 L152 340 L150 290Z" fill="${b}" opacity=".9"/>`;
@@ -194,6 +237,7 @@
         if(A.has("Nón quai thao"))ex+=`<ellipse cx="150" cy="40" rx="62" ry="14" fill="#2a2a2a"/><path d="M130 52 L125 85M170 52 L175 85" stroke="${b}" stroke-width="3"/>`;
         if(A.has("Khăn mỏ quạ"))ex+=`<path d="M112 48 Q150 15 188 48 L196 62 L150 44 L104 62Z" fill="#2a2a2a"/>`;
         if(A.has("Khăn vấn"))ex+=`<path d="M114 56 Q150 20 186 56 L184 66 L116 66Z" fill="${b}"/>`;
+        if(A.has("Nón lá"))ex+=`<path d="M124 58 Q121 80 126 99 M176 58 Q179 80 174 99" stroke="${a}" stroke-width="2.5" fill="none"/><path d="M150 12 L90 58 Q150 70 210 58Z" fill="#e6cf9a" stroke="#b8975a" stroke-width="1.5"/><path d="M150 12 L118 62 M150 12 L150 66 M150 12 L182 62" stroke="#b8975a" stroke-width="1" fill="none"/><path d="M128 40 Q150 47 172 40 M108 51 Q150 60 192 51" stroke="#c8ad72" stroke-width="1" fill="none"/>`;
         if(A.has("Thắt lưng"))ex+=`<rect x="105" y="212" width="90" height="10" fill="${b}"/><path d="M150 222 L140 255M150 222 L162 250" stroke="${b}" stroke-width="5"/>`;
         if(A.has("Hoa tai bạc"))ex+=`<circle cx="118" cy="85" r="4" fill="#c0c0c0"/><circle cx="182" cy="85" r="4" fill="#c0c0c0"/>`;
         if(A.has("Quạt giấy"))ex+=`<path d="M210 200 L252 160 A60 60 0 0 1 232 230Z" fill="#f1e4c8" stroke="${a}"/>`;
@@ -201,32 +245,28 @@
 
         // 5. KHUÔN MẶT
         const faceDetails = `
-            <!-- Lông mày -->
             <path d="M136 73 Q142 70 146 73" stroke="#2a1c12" stroke-width="1.5" stroke-linecap="round" fill="none"/>
             <path d="M154 73 Q158 70 164 73" stroke="#2a1c12" stroke-width="1.5" stroke-linecap="round" fill="none"/>
-            <!-- Mắt -->
             <circle cx="141" cy="78" r="2" fill="#2a1c12"/>
             <circle cx="159" cy="78" r="2" fill="#2a1c12"/>
-            <!-- Má hồng -->
             <ellipse cx="136" cy="84" rx="4" ry="2" fill="#e89182" opacity=".6"/>
             <ellipse cx="164" cy="84" rx="4" ry="2" fill="#e89182" opacity=".6"/>
-            <!-- Mũi -->
             <path d="M150 78 L149 84" stroke="#d6a885" stroke-width="1.5" stroke-linecap="round"/>
-            <!-- Miệng cười -->
             <path d="M145 89 Q150 94 155 89" stroke="#b3261e" stroke-width="2" stroke-linecap="round" fill="none"/>
         `;
 
-        return `<rect width="300" height="380" rx="16" fill="#faf8f5"/>${limbs}${shoesSVG}${pants}${body}<circle cx="150" cy="82" r="30" fill="${skinColor}"/><path d="M118 80 Q150 30 182 80 Q170 60 150 58 Q130 60 118 80Z" fill="#2a1c12"/>${faceDetails}<rect x="138" y="108" width="24" height="25" fill="${skinColor}"/>${ex}`;
+        const H=hairSVG(T.hair,a,b);
+        return `<rect width="300" height="380" rx="16" fill="#faf8f5"/>${H.back}${limbs}${shoesSVG}${pants}${body}${H.mid}<circle cx="150" cy="82" r="30" fill="${skinColor}"/>${H.cap}${faceDetails}<rect x="138" y="108" width="24" height="25" fill="${skinColor}"/>${collar}${ex}`;
     }
 
     function renderLB(){
         const el=document.getElementById("lb");
         if(!LB.length){el.innerHTML='<span class="s">Chưa có look nào — hãy lưu một phương án.</span>';return}
-        el.innerHTML=LB.map(l=>`<div class="lk"><svg viewBox="0 0 300 380">${figSVG({cos:l.cos,c1:l.c1,c2:l.c2,sh:l.sh||"Guốc gỗ mộc",acc:new Set(l.acc)})}</svg><b>${l.cos}</b><br><span class="s">${l.evt} · ${l.sty}</span><br><small>${COL[l.c1][0]} + ${COL[l.c2][0]} · ${l.sh||"Guốc gỗ"}${l.acc.length?" · "+l.acc.join(", "):""}</small></div>`).join("");
+        el.innerHTML=LB.map(l=>`<div class="lk"><svg viewBox="0 0 300 380">${figSVG({cos:l.cos,c1:l.c1,c2:l.c2,sh:l.sh||"Guốc gỗ mộc",hair:l.hair,acc:new Set(l.acc)})}</svg><b>${l.cos}</b><br><span class="s">${l.evt} · ${l.sty}</span><br><small>${COL[l.c1][0]} + ${COL[l.c2][0]} · ${l.sh||"Guốc gỗ"} · ${l.hair||"Xõa dài"}${l.acc.length?" · "+l.acc.join(", "):""}</small></div>`).join("");
     }
 
     function okL(l){return l&&COS[l.cos]&&Number.isInteger(l.c1)&&COL[l.c1]&&Number.isInteger(l.c2)&&COL[l.c2]&&EV.includes(l.evt)&&ST.includes(l.sty)}
-    function cl(l){return{cos:l.cos,evt:l.evt,sty:l.sty,c1:l.c1,c2:l.c2,sh:SHOES.includes(l.sh)?l.sh:"Guốc gỗ mộc",acc:(Array.isArray(l.acc)?l.acc:[]).filter(x=>ACC.includes(x))}}
+    function cl(l){return{cos:l.cos,evt:l.evt,sty:l.sty,c1:l.c1,c2:l.c2,sh:SHOES.includes(l.sh)?l.sh:"Guốc gỗ mộc",hair:HAIR.includes(l.hair)?l.hair:"Xõa dài",acc:(Array.isArray(l.acc)?l.acc:[]).filter(x=>ACC.includes(x))}}
 
     function load(){
         try{
@@ -239,7 +279,7 @@
 
     document.getElementById("save").onclick=()=>{
         if(LB.length>=12)LB.shift();
-        LB.push({cos:S.cos,evt:S.evt,sty:S.sty,c1:S.c1,c2:S.c2,sh:S.sh,acc:[...S.acc]});
+        LB.push({cos:S.cos,evt:S.evt,sty:S.sty,c1:S.c1,c2:S.c2,sh:S.sh,hair:S.hair,acc:[...S.acc]});
         renderLB();
         try{localStorage.setItem("vp-lb",JSON.stringify(LB))}catch(e){}
     };
